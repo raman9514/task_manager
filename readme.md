@@ -7,8 +7,7 @@ This is a **Task Management API** built using **Django** and **Django REST Frame
 - ✅ Create new tasks with a name, description, and status
 - ✅ Assign tasks to one or multiple users
 - ✅ Retrieve all tasks assigned to a specific user
-- ✅ User creation with email, mobile, and password authentication
-- ✅ Well-documented APIs with example requests and responses
+
 
 ## Technologies Used
 - **Django** & **Django REST Framework**
@@ -87,12 +86,12 @@ $ docker stop <container_id>
 ## API Endpoints & Field Requirements
 
 ### **1️⃣ Create a User**
-📌 **Endpoint:** `POST /api/users/create/`
+📌 **Endpoint:** `POST /api/accounts/create/`
 
 **Required Fields:**
-- `username` (string) - **Mandatory**
-- `email` (string) - **Mandatory** (must be unique)
-- `mobile` (string) - **Mandatory**
+- `username` (string) - **Mandatory** (must be unique)
+- `email` (string) - **Mandatory** 
+- `mobile` (string) - **Mandatory** (must be unique)
 - `password` (string) - **Mandatory**
 
 **Request Body:**
@@ -126,8 +125,8 @@ $ docker stop <container_id>
 **Required Fields:**
 - `name` (string) - **Mandatory**
 - `description` (string) - **Mandatory**
-- `task_type` (string) - **Mandatory**
-- `status` (string) - **Mandatory** (e.g., `pending`, `in_progress`, `completed`)
+- `task_type` (string) - **Optional**
+- `status` (string) - **Optional** (e.g., `pending`, `in_progress`, `completed`)
 - `assigned_users` (list of user IDs) - **Optional**
 
 **Request Body:**
@@ -159,15 +158,17 @@ $ docker stop <container_id>
 ---
 
 ### **3️⃣ Assign Task to Users**
-📌 **Endpoint:** `POST /api/tasks/assign/{task_id}/`
+📌 **Endpoint:** `POST /api/tasks/assign/`
 
 **Required Fields:**
-- `assigned_users` (list of user IDs) - **Mandatory**
+- `task_id`  - **Mandatory**
+- `user_ids` (list of user IDs) - **Mandatory**
 
 **Request Body:**
 ```json
 {
-    "assigned_users": [1, 2]
+    "task_id": 1,
+    "user_ids" : [1,2]
 }
 ```
 
@@ -183,7 +184,7 @@ $ docker stop <container_id>
 ---
 
 ### **4️⃣ Get Tasks Assigned to a Specific User**
-📌 **Endpoint:** `GET /api/users/{user_id}/tasks/`
+📌 **Endpoint:** `GET /api/tasks/user/{user_id}/`
 
 **Response Example:**
 ```json
