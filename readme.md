@@ -19,7 +19,7 @@ This is a **Task Management API** built using **Django** and **Django REST Frame
 
 ### 1️⃣ Clone the Repository
 ```sh
-$ git clone https://github.com/your-username/task-management-api.git
+$ git clone https://github.com/raman9514/task_manager.git
 $ cd task-management-api
 ```
 
